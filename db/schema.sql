@@ -6,6 +6,8 @@ USE management_db;
 CREATE TABLE department (
   id INT AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
+  -- Defining a TIMESTAMP column with no DEFAULT clause automatically
+  -- sets its default value to the current date and time.
   created_at TIMESTAMP
   DEFAULT CURRENT_TIMESTAMP
   ON UPDATE CURRENT_TIMESTAMP,
