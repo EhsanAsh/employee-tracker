@@ -6,5 +6,19 @@ USE management_db;
 CREATE TABLE department (
   id INT AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
+  created_at TIMESTAMP
+  DEFAULT CURRENT_TIMESTAMP
+  ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
+);
+
+CREATE TABLE role (
+  id INT AUTO_INCREMENT,
+  title VARCHAR(30) NOT NULL,
+  salary DECIMAL(10,2) NOT NULL,
+  department_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (department_id)
+  REFERENCES department(id)
+  ON DELETE SET NULL
 );
