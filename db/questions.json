@@ -5,14 +5,14 @@
       "name": "choices",
       "message": "What would you like to do?",
       "choices": [
-        "View all departments",
-        "View all roles",
-        "View all employees",
-        "Add a new department",
-        "Add a new role",
-        "Add a new employee",
-        "Update employee role",
-        "Exit"
+        "view all departments",
+        "view all roles",
+        "view all employees",
+        "add a new department",
+        "add a new role",
+        "add a new employee",
+        "update an employee role",
+        "exit"
       ],
       "default": "view all employees"
     }
