@@ -1,0 +1,20 @@
+{
+  "questions": [
+    {
+      "type": "list",
+      "name": "choices",
+      "message": "What would you like to do?",
+      "choices": [
+        "view all departments",
+        "view all roles",
+        "view all employees",
+        "add a new department",
+        "add a new role",
+        "add a new employee",
+        "update an employee role",
+        "exit"
+      ],
+      "default": "view all employees"
+    }
+  ]
+}
