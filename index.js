@@ -21,9 +21,8 @@ const connection = mysql.createConnection(
   console.log(`Connected to the management_db database.`)
 );
 
-// connection.connect((err) => err ? console.error(err) : console.log(`Connected to the management_db database.`));
-
-// Creatin loadMainPrompt function to load the main prompts using class Queries and defined methods for each query:
+// Creating loadMainPrompt function to load the main prompts using 
+// class Queries and defined methods for each query:
 const loadMainPrompts = () => { 
 
   readFromFile('./db/questions.json', 'utf8')
@@ -36,7 +35,7 @@ const loadMainPrompts = () => {
 
     .then((answers) => {
 
-      const queries = new Queries(connection);
+      const queries = new Queries(connection, loadMainPrompts);
       switch (answers.choices) {
         case 'view all departments':
           queries.viewAllDepartments();
