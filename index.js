@@ -64,8 +64,6 @@ const loadMainPrompts = () => {
       };
 
     })
-  
-    .then((answers) => console.log(answers))
 
     .catch((err) => console.error(`Error: ${err}`));
 
