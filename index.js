@@ -50,7 +50,7 @@ const loadMainPrompts = () => {
 
     .then((answers) => {
 
-      const queries = new Queries(connection, loadMainPrompts);
+      const queries = new Queries(connection, loadMainPrompts, answers);
       switch (answers.choices) {
         case 'view all departments':
           queries.viewAllDepartments();
