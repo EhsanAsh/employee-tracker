@@ -1,5 +1,7 @@
 {
+
   "questions": [
+
     {
       "type": "list",
       "name": "choices",
@@ -15,6 +17,13 @@
         "exit"
       ],
       "default": "view all employees"
+    },
+    {
+      "type": "input",
+      "name": "department",
+      "message": "What is the name of the department you would like to add?"
     }
+
   ]
+
 }
