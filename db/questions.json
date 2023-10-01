@@ -22,6 +22,38 @@
       "type": "input",
       "name": "department",
       "message": "What is the name of the department you would like to add?"
+    },
+    {
+      "type": "input",
+      "name": "role",
+      "message": "What is the name of the role you would like to add?"
+    },
+    {
+      "type": "input",
+      "name": "salary",
+      "message": "What is the salary of the role you would like to add?"
+    },
+    {
+      "type": "list",
+      "name": "department",
+      "message": "What department does this role belong to?",
+      "choices": [
+      "Sales and Marketing",
+      "Quality Management",
+      "Production Control",
+      "Engineering",
+      "Research and Development",
+      "Human Resources",
+      "Accounting",
+      "Legal",
+      "IT",
+      "Advertising",
+      "Business Development",
+      "Customer Service",
+      "Finance",
+      "Security"
+      ],
+      "default": "Sales"
     }
 
   ]
