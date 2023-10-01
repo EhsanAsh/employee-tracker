@@ -35,7 +35,7 @@
     },
     {
       "type": "list",
-      "name": "department",
+      "name": "role-department",
       "message": "What department does this role belong to?",
       "choices": [
       "Sales and Marketing",

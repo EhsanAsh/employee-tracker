@@ -39,6 +39,17 @@ const loadMainPrompts = () => {
             question.when = (answers) => answers.choices === 'add a new department';
             question.validate = (input) => typeof input === 'string' && input.length > 0 ? true : 'Please enter a valid department name.';
             break;
+          case 'role':
+            question.when = (answers) => answers.choices === 'add a new role';
+            question.validate = (input) => typeof input === 'string' && input.length > 0 ? true : 'Please enter a valid role name.';
+            break;
+          case 'salary':
+            question.when = (answers) => answers.choices === 'add a new role';
+            question.validate = (input) => typeof input === 'number' && input > 0 ? true : 'Please enter a valid salary amount.';
+            break;
+          case 'role-department':
+            question.when = (answers) => answers.choices === 'add a new role';
+            break;
 
         };
         return question;
