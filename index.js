@@ -7,11 +7,10 @@
 const inquirer = require('inquirer');
 const logo = require('asciiart-logo');
 const mysql = require('mysql2');
-const queries = require('./lib/queries');
+const Queries = require('./lib/queries');
 const util = require('util');
 const fs = require('fs');
 const readFromFile = util.promisify(fs.readFile);
-
 const connection = mysql.createConnection(
   {
     host: 'localhost',
@@ -19,43 +18,45 @@ const connection = mysql.createConnection(
     password: 'Porsche@#911GT3',
     database: 'management_db'
   },
-  // console.log(`Connected to the management_db database.`)
+  console.log(`Connected to the management_db database.`)
 );
 
-connection.connect((err) => err ? console.error(err) : console.log(`Connected to the management_db database.`));
-
-// Main prompts:
+// Creating loadMainPrompt function to load the main prompts using 
+// class Queries and defined methods for each query:
 const loadMainPrompts = () => { 
 
   readFromFile('./db/questions.json', 'utf8')
+
     .then((json) => { 
       const data = JSON.parse(json);
       const questions = data.questions;
       return inquirer.prompt(questions);
     })
+
     .then((answers) => {
 
+      const queries = new Queries(connection, loadMainPrompts);
       switch (answers.choices) {
         case 'view all departments':
-          viewAllDepartments();
+          queries.viewAllDepartments();
           break;
         case 'view all roles':
-          viewAllRoles();
+          queries.viewAllRoles();
           break;
         case 'view all employees':
-          viewAllEmployees();
+          queries.viewAllEmployees();
           break;
         case 'add a new department':
-          addDepartment();
+          queries.addDepartment();
           break;
         case 'add a new role':
-          addRole();
+          queries.addRole();
           break;
         case 'add a new employee':
-          addEmployee();
+          queries.addEmployee();
           break;
         case 'update an employee role':
-          updateEmployeeRole();
+          queries.updateEmployeeRole();
           break;
         case 'exit':
           connection.end();
@@ -63,8 +64,6 @@ const loadMainPrompts = () => {
       };
 
     })
-  
-    .then((answers) => console.log(answers))
 
     .catch((err) => console.error(`Error: ${err}`));
 
