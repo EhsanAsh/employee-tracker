@@ -30,7 +30,22 @@ const loadMainPrompts = () => {
     .then((json) => { 
       const data = JSON.parse(json);
       const questions = data.questions;
-      return inquirer.prompt(questions);
+      // Adding dynamic logic to the questions, based on the user's answers:
+      const modifiedQuestions = questions.map((question) => { 
+
+        switch (question.name) { 
+
+          case 'department':
+            question.when = (answers) => answers.choices === 'add a new department';
+            question.validate = (input) => typeof input.trim().tolowerCase() === 'string' && input.trim().length > 0 ? true : 'Please enter a valid department name.';
+            break;
+
+        };
+        return question;
+
+      });
+
+      return inquirer.prompt(modifiedQuestions);
     })
 
     .then((answers) => {
