@@ -39,15 +39,19 @@ const loadMainPrompts = () => {
             question.when = (answers) => answers.choices === 'add a new department';
             question.validate = (input) => typeof input === 'string' && input.length > 0 ? true : 'Please enter a valid department name.';
             break;
+          
           case 'role':
             question.when = (answers) => answers.choices === 'add a new role';
             question.validate = (input) => typeof input === 'string' && input.length > 0 ? true : 'Please enter a valid role name.';
             break;
+          
           case 'salary':
             question.when = (answers) => answers.choices === 'add a new role';
             question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid salary amount.';
             break;
+          
           case 'roleDepartment':
+
             // creating a function to get the department names from the database:
             const getDepartments = () => {
 
@@ -67,13 +71,64 @@ const loadMainPrompts = () => {
 
             question.choices = () => getDepartments();
             question.when = (answers) => answers.choices === 'add a new role';
-            question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid department id.';
-            
+            question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid department id.';           
+            break;
+          
+          case 'firstName':
+            question.when = (answers) => answers.choices === 'add a new employee';
+            question.validate = (input) => typeof (input.trim().toLowerCase()) === 'string' && input.length > 0 ? true : 'Please enter a valid first name.';
+            break;
+          case 'lastName':
+            question.when = (answers) => answers.choices === 'add a new employee';
+            question.validate = (input) => typeof (input.trim().toLowerCase()) === 'string' && input.length > 0 ? true : 'Please enter a valid last name.';
+            break;
+          case 'employeeRole':
+
+            const getRoles = () => { 
+
+              const query = `SELECT * FROM role`;
+              return connection.promise().query(query)
+
+                .then(([rows, fields]) => { 
+                  const roles = rows.map((row) => { 
+                    return { name: row.title, value: row.id };
+                  });
+                  return roles;
+                })
+              
+                .catch(console.error);
+            };
+
+            question.choices = () => getRoles();
+            question.when = (answers) => answers.choices === 'add a new employee';
+            question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid role id.';
+            break;
+          
+          case 'employeeManager':
+
+            const getManagers = () => { 
+
+              const query = `SELECT * FROM employee`;
+              return connection.promise().query(query)
+
+                .then(([rows, fields]) => { 
+                  const managers = rows.map((row) => { 
+                    return { name: `${row.first_name} ${row.last_name}`, value: row.id };
+                  });
+                  return managers;
+                })
+
+                .catch(console.error);
+            };
+
+            question.choices = () => getManagers();
+            question.when = (answers) => answers.choices === 'add a new employee';
+            question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid manager id.';
             break;
 
         };
-        return question;
 
+        return question;
       });
 
       return inquirer.prompt(modifiedQuestions);
