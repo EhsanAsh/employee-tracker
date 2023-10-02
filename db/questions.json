@@ -36,24 +36,7 @@
     {
       "type": "list",
       "name": "roleDepartment",
-      "message": "What department does this role belong to?",
-      "choices": [
-      "Sales and Marketing",
-      "Quality Management",
-      "Production Control",
-      "Engineering",
-      "Research and Development",
-      "Human Resources",
-      "Accounting",
-      "Legal",
-      "IT",
-      "Advertising",
-      "Business Development",
-      "Customer Service",
-      "Finance",
-      "Security"
-      ],
-      "default": "Sales"
+      "message": "What department does this role belong to?"
     }
 
   ]

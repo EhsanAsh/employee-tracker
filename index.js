@@ -48,7 +48,27 @@ const loadMainPrompts = () => {
             question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid salary amount.';
             break;
           case 'roleDepartment':
+            // creating a function to get the department names from the database:
+            const getDepartments = () => {
+
+              const query = `SELECT * FROM department`;
+              return connection.promise().query(query)
+                
+                .then(([rows, fields]) => {
+                  const departments = rows.map((row) => {
+                    return { name: row.name, value: row.id };
+                  });
+                  return departments;
+                })
+
+                .catch(console.error);
+              
+            };
+
+            question.choices = () => getDepartments();
             question.when = (answers) => answers.choices === 'add a new role';
+            question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid department id.';
+            
             break;
 
         };
