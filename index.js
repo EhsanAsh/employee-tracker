@@ -124,6 +124,28 @@ const loadMainPrompts = () => {
             question.when = (answers) => answers.choices === 'add a new employee';
             question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid manager id.';
             break;
+          
+          case 'employeeUpdate':
+            const getEmployees = () => { 
+
+              const query = `SELECT * FROM employee`;
+              return connection.promise().query(query)
+
+                .then(([rows, fields]) => { 
+                  const employees = rows.map((row) => { 
+                    return { name: `${row.first_name} ${row.last_name}`, value: row.id };
+                  });
+                  return employees;
+                })
+
+                .catch(console.error);
+
+            };
+
+            question.choices = () => getEmployees();
+            question.when = (answers) => answers.choices === 'update an employee role';
+            question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid employee id.';
+            break;
 
         };
 
