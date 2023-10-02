@@ -146,6 +146,27 @@ const loadMainPrompts = () => {
             question.when = (answers) => answers.choices === 'update an employee role';
             question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid employee id.';
             break;
+          
+          case 'employeeNewRole':
+            const getNewRoles = () => { 
+
+              const query = `SELECT * FROM role`;
+              return connection.promise().query(query)
+                
+                  .then(([rows, fields]) => { 
+                    const roles = rows.map((row) => { 
+                      return { name: row.title, value: row.id };
+                    });
+                    return roles;
+                  })
+  
+                  .catch(console.error);
+            };
+
+            question.choices = () => getNewRoles();
+            question.when = (answers) => answers.choices === 'update an employee role';
+            question.validate = (input) => typeof (parseInt(input)) === 'number' && input > 0 ? true : 'Please enter a valid role id.';
+            break;
 
         };
 
