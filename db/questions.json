@@ -36,7 +36,8 @@
     {
       "type": "list",
       "name": "roleDepartment",
-      "message": "What department does this role belong to?"
+      "message": "What department does this role belong to?",
+      "choices": []
     },
     {
       "type": "input",
@@ -51,22 +52,26 @@
     {
       "type": "list",
       "name": "employeeRole",
-      "message": "What is the role of the employee you would like to add?"
+      "message": "What is the role of the employee you would like to add?",
+      "choices": []
     },
     {
       "type": "list",
       "name": "employeeManager",
-      "message": "Who is the manager of the employee you would like to add?"
+      "message": "Who is the manager of the employee you would like to add?",
+      "choices":[]
     },
     {
       "type": "list",
       "name": "employeeUpdate",
-      "message": "Which employee would you like to update?"
+      "message": "Which employee would you like to update?",
+      "choices": []
     },
     {
       "type": "list",
       "name": "employeeNewRole",
-      "message": "What is the new role of the employee you would like to update?"
+      "message": "What is the new role of the employee you would like to update?",
+      "choices": []
     }
 
   ]

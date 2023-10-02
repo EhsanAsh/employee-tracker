@@ -51,7 +51,6 @@ const loadMainPrompts = () => {
             break;
           
           case 'roleDepartment':
-
             // creating a function to get the department names from the database:
             const getDepartments = () => {
 
@@ -78,12 +77,13 @@ const loadMainPrompts = () => {
             question.when = (answers) => answers.choices === 'add a new employee';
             question.validate = (input) => typeof (input.trim().toLowerCase()) === 'string' && input.length > 0 ? true : 'Please enter a valid first name.';
             break;
+          
           case 'lastName':
             question.when = (answers) => answers.choices === 'add a new employee';
             question.validate = (input) => typeof (input.trim().toLowerCase()) === 'string' && input.length > 0 ? true : 'Please enter a valid last name.';
             break;
+          
           case 'employeeRole':
-
             const getRoles = () => { 
 
               const query = `SELECT * FROM role`;
@@ -105,7 +105,6 @@ const loadMainPrompts = () => {
             break;
           
           case 'employeeManager':
-
             const getManagers = () => { 
 
               const query = `SELECT * FROM employee`;
