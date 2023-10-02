@@ -37,6 +37,36 @@
       "type": "list",
       "name": "roleDepartment",
       "message": "What department does this role belong to?"
+    },
+    {
+      "type": "input",
+      "name": "firstName",
+      "message": "What is the first name of the employee you would like to add?"
+    },
+    {
+      "type": "input",
+      "name": "lastName",
+      "message": "What is the last name of the employee you would like to add?"
+    },
+    {
+      "type": "list",
+      "name": "employeeRole",
+      "message": "What is the role of the employee you would like to add?"
+    },
+    {
+      "type": "list",
+      "name": "employeeManager",
+      "message": "Who is the manager of the employee you would like to add?"
+    },
+    {
+      "type": "list",
+      "name": "employeeUpdate",
+      "message": "Which employee would you like to update?"
+    },
+    {
+      "type": "list",
+      "name": "employeeNewRole",
+      "message": "What is the new role of the employee you would like to update?"
     }
 
   ]
